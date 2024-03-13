@@ -1,12 +1,15 @@
 package telran.java51.bookservice.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor

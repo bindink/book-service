@@ -14,6 +14,9 @@ import telran.java51.bookservice.model.Author;
 import telran.java51.bookservice.model.Book;
 import telran.java51.bookservice.model.Publisher;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -87,5 +90,17 @@ public class BookServiceImpl implements BookService {
     @Override
     public Iterable<String> findPublishersByAuthor(String author) {
         return publisherRepository.findPublishersByAuthor(author);
+    }
+
+    @Override
+    @Transactional
+    public AuthorDto deleteAuthor(String authorName) {
+        Author author = authorRepository.findById(authorName).orElseThrow(EntityNotFoundExсeption::new);
+        String[] isbns = bookRepository.findByAuthor(authorName)
+                .map(Book::getIsbn)
+                .toArray(String[]::new);
+        authorRepository.deleteById(authorName);
+        bookRepository.deleteBooksByIsbn(isbns);
+        return modelMapper.map(author, AuthorDto.class);
     }
 }

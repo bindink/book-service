@@ -50,4 +50,8 @@ public class BookController {
     public Iterable<String> findPublishersByAuthor(@PathVariable String authorName) {
         return bookService.findPublishersByAuthor(authorName);
     }
+    @DeleteMapping("/author/{authorName}")
+    public AuthorDto deleteAuthor(@PathVariable String authorName) {
+        return bookService.deleteAuthor(authorName);
+    }
 }

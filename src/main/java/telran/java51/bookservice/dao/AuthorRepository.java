@@ -9,4 +9,6 @@ import java.util.stream.Stream;
 public interface AuthorRepository extends JpaRepository<Author, String> {
     @Query("select b.authors from Book b where b.isbn = ?1")
     Stream<Author> findAuthorsByBook(String isbn);
+
+
 }

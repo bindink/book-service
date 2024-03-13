@@ -15,4 +15,6 @@ public interface BookService {
     Iterable<AuthorDto> findAuthorsByBook(String isbn);
 
     Iterable<String> findPublishersByAuthor(String author);
+
+    AuthorDto deleteAuthor(String authorName);
 }
