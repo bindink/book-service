@@ -79,7 +79,8 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional(readOnly = true)
     public Iterable<AuthorDto> findAuthorsByBook(String isbn) {
-        return authorRepository.findAuthorsByBook(isbn)
+        return authorRepository.findById(isbn)
+                .stream()
                 .map(a -> modelMapper.map(a, AuthorDto.class))
                 .collect(Collectors.toSet());
     }
