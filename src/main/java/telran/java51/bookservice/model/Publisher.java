@@ -19,8 +19,8 @@ public class Publisher implements Serializable {
     @Id
     String publisherName;
 
-    @Override
-    public String toString() {
-        return publisherName;
-    }
+//    @Override
+//    public String toString() {
+//        return publisherName;
+//    }
 }
