@@ -23,4 +23,11 @@ public class Author implements Serializable {
     @Id
     String name;
     LocalDate birthDate;
+    @ManyToMany(mappedBy = "authors", cascade=CascadeType.REMOVE)
+    Set<Book>books;
+
+    public Author(String name, LocalDate birthDate) {
+        this.name = name;
+        this.birthDate = birthDate;
+    }
 }

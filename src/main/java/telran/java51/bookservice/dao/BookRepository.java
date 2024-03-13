@@ -12,4 +12,6 @@ public interface BookRepository extends JpaRepository<Book, String> {
 
 //    @Query("select b from Book b join b.publisher p where lower(p.publisherName) = lower(?1)")
     Stream<Book> findByPublisherPublisherName(String publisher);
+
+    void deleteByAuthorsName(String authorName);
 }

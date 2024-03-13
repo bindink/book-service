@@ -5,10 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import telran.java51.bookservice.model.Publisher;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface PublisherRepository extends JpaRepository<Publisher, String> {
 
 //    @Query("select b.publisher from Book b join b.authors ba where ba.name = :authorName")
-    @Query("select distinct b.publisher.publisherName from Book b join b.authors ba where ba.name = :authorName")
-    List<String> findPublishersByAuthor(String authorName);
+//    @Query("select distinct b.publisher.publisherName from Book b join b.authors ba where ba.name = :authorName")
+//    List<String> findPublishersByAuthor(String authorName);
+
+    Stream<Publisher> findDistinctByBooksAuthorsName(String authorName);
 }

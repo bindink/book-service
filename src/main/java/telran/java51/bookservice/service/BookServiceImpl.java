@@ -65,16 +65,18 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<BookDto> findBooksByAuthor(String author) {
-        return bookRepository.findByAuthorsName(author)
-                .map(book -> modelMapper.map(book, BookDto.class))
+    public Iterable<BookDto> findBooksByAuthor(String authorName) {
+        Author author = authorRepository.findById(authorName).orElseThrow(EntityNotFoundExсeption::new);
+        return author.getBooks().stream().map(book -> modelMapper.map(book, BookDto.class))
                 .collect(Collectors.toSet());
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<BookDto> findBooksByPublisher(String publisher) {
-        return bookRepository.findByPublisherPublisherName(publisher)
+    public Iterable<BookDto> findBooksByPublisher(String publisherName) {
+        Publisher publisher = publisherRepository.findById(publisherName).orElseThrow(EntityNotFoundExсeption::new);
+        return publisher.getBooks()
+                .stream()
                 .map(book -> modelMapper.map(book, BookDto.class))
                 .collect(Collectors.toSet());
     }
@@ -88,19 +90,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Iterable<String> findPublishersByAuthor(String author) {
-        return publisherRepository.findPublishersByAuthor(author);
+        return publisherRepository.findDistinctByBooksAuthorsName(author)
+                .map(Publisher::getPublisherName)
+                .collect(Collectors.toSet());
     }
 
     @Override
     @Transactional
     public AuthorDto deleteAuthor(String authorName) {
         Author author = authorRepository.findById(authorName).orElseThrow(EntityNotFoundExсeption::new);
-        String[] isbns = bookRepository.findByAuthor(authorName)
-                .map(Book::getIsbn)
-                .toArray(String[]::new);
         authorRepository.deleteById(authorName);
-        bookRepository.deleteBooksByIsbn(isbns);
         return modelMapper.map(author, AuthorDto.class);
     }
 }
