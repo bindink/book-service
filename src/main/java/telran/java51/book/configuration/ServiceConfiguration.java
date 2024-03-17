@@ -1,4 +1,4 @@
-package telran.java51.bookservice.configuration;
+package telran.java51.book.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;

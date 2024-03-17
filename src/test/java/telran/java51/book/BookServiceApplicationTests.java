@@ -1,4 +1,4 @@
-package telran.java51.bookservice;
+package telran.java51.book;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

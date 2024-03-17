@@ -1,10 +1,10 @@
-package telran.java51.bookservice.controller;
+package telran.java51.book.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import telran.java51.bookservice.dto.AuthorDto;
-import telran.java51.bookservice.dto.BookDto;
-import telran.java51.bookservice.service.BookService;
+import telran.java51.book.dto.AuthorDto;
+import telran.java51.book.dto.BookDto;
+import telran.java51.book.service.BookService;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,18 +17,18 @@ public class BookController {
     }
 
     @GetMapping("/book/{isbn}")
-    public BookDto findBookByIsbn (String isbn) {
+    public BookDto findBookByIsbn (@PathVariable String isbn) {
         return bookService.findBookByIsbn(isbn);
     }
 
     @DeleteMapping("/book/{isbn}")
     public BookDto deleteBook(@PathVariable String isbn) {
-        return bookService.deleteBook(isbn);
+        return bookService.remove(isbn);
     }
 
     @PutMapping("/book/{isbn}/title/{newTitle}")
     public BookDto updateBookTitle(@PathVariable String isbn, @PathVariable String newTitle) {
-        return bookService.updateBookTitle(isbn, newTitle);
+        return bookService.updateBook(isbn, newTitle);
     }
 
     @GetMapping("/books/author/{authorName}")
@@ -43,7 +43,7 @@ public class BookController {
 
     @GetMapping("/authors/book/{isbn}")
     public Iterable<AuthorDto> findAuthorsByBook(@PathVariable String isbn) {
-        return bookService.findAuthorsByBook(isbn);
+        return bookService.findBookAuthors(isbn);
     }
 
     @GetMapping("/publishers/author/{authorName}")
@@ -52,6 +52,6 @@ public class BookController {
     }
     @DeleteMapping("/author/{authorName}")
     public AuthorDto deleteAuthor(@PathVariable String authorName) {
-        return bookService.deleteAuthor(authorName);
+        return bookService.removeAuthor(authorName);
     }
 }

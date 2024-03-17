@@ -1,4 +1,4 @@
-package telran.java51.bookservice;
+package telran.java51.book;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

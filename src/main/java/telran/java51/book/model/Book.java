@@ -1,4 +1,4 @@
-package telran.java51.bookservice.model;
+package telran.java51.book.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,9 +24,10 @@ public class Book implements Serializable {
     String title;
     @ManyToMany
     @JoinTable(name = "BOOK_AUTHORS",
-            joinColumns = @JoinColumn(name = "BOOKS_ISBN"),
+            joinColumns = @JoinColumn(name = "BOOK_ISBN"),
             inverseJoinColumns = @JoinColumn(name = "AUTHORS_NAME"))
     Set<Author> authors;
     @ManyToOne
+    @JoinColumn(name="PUBLISHER_PUBLISHER_NAME", nullable=false)
     Publisher publisher;
 }

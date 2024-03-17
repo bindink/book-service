@@ -1,4 +1,4 @@
-package telran.java51.bookservice.dto;
+package telran.java51.book.dto;
 
 import lombok.Getter;
 

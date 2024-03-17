@@ -1,4 +1,4 @@
-package telran.java51.bookservice.model;
+package telran.java51.book.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

@@ -1,8 +1,6 @@
-package telran.java51.bookservice.model;
+package telran.java51.book.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serial;
